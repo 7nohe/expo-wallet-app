@@ -1,21 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Container,
   Header,
   Title,
-  Content,
   Footer,
   FooterTab,
   Button,
   Body,
   Icon
 } from "native-base";
+import { TabNavigation } from './types/TabNavigation'
 
 interface IProps {
   children: React.ReactNode;
+  navigation: TabNavigation;
 }
 
 const Layout = (props: IProps) => {
+  const [currentScreen, setCurrentScreen] = useState('Home');
+  const navigate = (name) => {
+    if (name === currentScreen) return
+    setCurrentScreen(name)
+    props.navigation.reset({ index: 0, routes: [{ name }]})
+  }
+
   return (
     <Container>
       <Header>
@@ -23,16 +31,25 @@ const Layout = (props: IProps) => {
           <Title>My Pay</Title>
         </Body>
       </Header>
-      <Content>{props.children}</Content>
+      {props.children}
       <Footer>
         <FooterTab>
-          <Button>
+          <Button
+            onPress={() => navigate('Home')}
+            active={currentScreen === 'Home'}
+          >
             <Icon name="home" />
           </Button>
-          <Button>
+          <Button
+            onPress={() => navigate('ShopList')}
+            active={currentScreen === 'ShopList'}
+          >
             <Icon type="Entypo" name="shop"/>
           </Button>
-          <Button>
+          <Button
+            onPress={() => navigate('NotificationList')}
+            active={currentScreen === 'NotificationList'}
+          >
             <Icon type="AntDesign" name="bells" />
           </Button>
           <Button>
