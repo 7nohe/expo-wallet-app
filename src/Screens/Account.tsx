@@ -1,9 +1,13 @@
 import React from "react";
-import { Text } from "react-native"
+import { Text, Content, Container } from "native-base";
 
 const AccountScreen = () => {
   return (
-      <Text>Account</Text>
+    <Container>
+      <Content>
+        <Text>Account</Text>
+      </Content>
+    </Container>
   );
 };
 
