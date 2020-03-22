@@ -2,9 +2,9 @@ import React from "react";
 import "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import HomeScreen from "./src/Screens/Home";
-import ShopListScreen from "./src/Screens/ShopList";
-import NotificationListScreen from "./src/Screens/NotificationList";
+import HomeScreen from "./src/pages/Home";
+import ShopListScreen from "./src/pages/ShopList";
+import NotificationListScreen from "./src/pages/NotificationList";
 import { RootStackParamList } from "./src/types/RootStackParamList";
 import Layout from "./src/Layout";
 import { store } from './src/store'

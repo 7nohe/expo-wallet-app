@@ -11,7 +11,7 @@ import {
 } from "native-base";
 import { TabNavigation } from "./types/TabNavigation";
 import { Drawer } from "native-base";
-import Account from "./Screens/Account";
+import Account from "./pages/Account";
 
 interface IProps {
   children: React.ReactNode;
