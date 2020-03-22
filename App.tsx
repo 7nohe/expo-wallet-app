@@ -7,10 +7,12 @@ import ShopListScreen from "./src/Screens/ShopList";
 import NotificationListScreen from "./src/Screens/NotificationList";
 import { RootStackParamList } from "./src/types/RootStackParamList";
 import Layout from "./src/Layout";
+import { store } from './src/store'
+import { Provider } from "react-redux";
 
 const Stack = createStackNavigator<RootStackParamList>();
 
-export default function App() {
+function Root() {
   const navigationRef = React.useRef(null);
 
   const navigation = {
@@ -33,4 +35,12 @@ export default function App() {
       </NavigationContainer>
     </Layout>
   );
+}
+
+export default function App() {
+  return (
+    <Provider store={store}>
+      <Root/>
+    </Provider>
+  )
 }
