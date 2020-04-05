@@ -7,6 +7,7 @@ export interface Ticket {
 export interface TicketState {
   selectedTicket: Ticket
   savedTickets: Ticket[]
+  loading: boolean
 }
 
 export const SELECT_TICKET = 'SELECT_TICKET'

@@ -6,7 +6,8 @@ const initialState: TicketState = {
     name: null,
     balance: 0
   },
-  savedTickets: []
+  savedTickets: [],
+  loading: false
 }
 
 export function ticketReducer(
@@ -20,11 +21,15 @@ export function ticketReducer(
         selectedTicket: action.payload
       }
     case GET_TICKETS_REQUEST_START:
-      return state
+      return {
+        ...state,
+        loading: true
+      }
     case GET_TICKETS_REQUEST_END:
       return {
         ...state,
-        savedTickets: [...state.savedTickets, ...action.payload]
+        savedTickets: [...state.savedTickets, ...action.payload],
+        loading: false
       }
     default:
       return state
