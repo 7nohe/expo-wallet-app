@@ -1,4 +1,4 @@
-import { TicketState, TicketActionTypes, SELECT_TICKET } from './types'
+import { TicketState, TicketActionTypes, SELECT_TICKET, GET_TICKETS_REQUEST_END, GET_TICKETS_REQUEST_START } from './types'
 
 const initialState: TicketState = {
   selectedTicket: {
@@ -18,6 +18,13 @@ export function ticketReducer(
       return {
         ...state,
         selectedTicket: action.payload
+      }
+    case GET_TICKETS_REQUEST_START:
+      return state
+    case GET_TICKETS_REQUEST_END:
+      return {
+        ...state,
+        savedTickets: [...state.savedTickets, ...action.payload]
       }
     default:
       return state

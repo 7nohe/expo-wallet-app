@@ -1,9 +1,9 @@
-import React from "react";
-import { Text, Content } from "native-base";
+import React, { useEffect } from "react";
+import { Text, Content, Button } from "native-base";
 import Swiper from 'react-native-swiper'
 import { StyleSheet, View } from "react-native";
 import { useDispatch, useSelector } from 'react-redux'
-import { SELECT_TICKET, Ticket } from "../store/ticket/types";
+import { SELECT_TICKET, Ticket, GET_TICKETS_REQUEST_START } from "../store/ticket/types";
 import { RootState } from "../store";
 
 const styles = StyleSheet.create({
@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
 const HomeScreen = () => {
   const dispatch = useDispatch()
   const selectedTicket = useSelector((state: RootState) => state.ticket.selectedTicket)
+  const savedTickets = useSelector((state: RootState) => state.ticket.savedTickets)
   const onSwipe = (index) => {
     dispatch({ type: SELECT_TICKET, payload: { index, name: slides[index].name, balance: slides[index].balance } })
   }
@@ -48,6 +49,10 @@ const HomeScreen = () => {
       balance: 1200
     }
   ]
+
+  useEffect(() => {
+    dispatch({ type: GET_TICKETS_REQUEST_START })
+  }, [])
 
   return (
     <Content style={{ marginTop: 20 }}>
@@ -72,6 +77,15 @@ const HomeScreen = () => {
           })
         }
       </Swiper>
+      <View style={{ margin: 20 }}>
+      {
+        savedTickets.map(ticket => {
+          return (
+            <Text> - {ticket.name}</Text>
+          )
+        })
+      }
+      </View>
     </Content>
   );
 };
